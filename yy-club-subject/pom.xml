@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <groupId>com.jingdianyy</groupId>
+  <artifactId>yy-club-subject</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <description>题目领域服务</description>
+  <modelVersion>4.0.0</modelVersion>
+
+  <modules>
+    <module>yy-club-subject-api</module>
+    <module>yy-club-application</module>
+    <module>yy-club-domain</module>
+    <module>yy-club-common</module>
+    <module>yy-club-infra</module>
+    <module>yy-club-starter</module>
+  </modules>
+
+</project>
