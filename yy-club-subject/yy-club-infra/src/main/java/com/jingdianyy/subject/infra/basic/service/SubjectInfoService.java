@@ -2,6 +2,8 @@ package com.jingdianyy.subject.infra.basic.service;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfo;
 
+import java.util.List;
+
 /**
  * 题目信息表(SubjectInfo)表服务接口
  *
@@ -42,4 +44,14 @@ public interface SubjectInfoService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 查询数量
+     * @param subjectInfo
+     * @param labelId
+     * @param categoryId
+     * @return
+     */
+    int countByCondition(SubjectInfo subjectInfo, Long labelId, Long categoryId);
+
+    List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long labelId, Long categoryId, int start, Integer pageSize);
 }

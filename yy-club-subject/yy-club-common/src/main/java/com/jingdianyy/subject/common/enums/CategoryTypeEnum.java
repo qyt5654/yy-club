@@ -20,10 +20,10 @@ public enum CategoryTypeEnum {
         this.desc = desc;
     }
 
-    public static ResultCodeEnum getByCode(int code) {
-        for(ResultCodeEnum resultCodeEnum : ResultCodeEnum.values()) {
-            if(resultCodeEnum.code == code) {
-                return resultCodeEnum;
+    public static CategoryTypeEnum getByCode(int code) {
+        for(CategoryTypeEnum categoryTypeEnum : CategoryTypeEnum.values()) {
+            if(categoryTypeEnum.code == code) {
+                return categoryTypeEnum;
             }
         }
         return null;

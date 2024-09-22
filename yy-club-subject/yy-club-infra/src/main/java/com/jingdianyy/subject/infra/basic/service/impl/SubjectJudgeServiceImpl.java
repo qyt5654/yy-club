@@ -5,6 +5,7 @@ import com.jingdianyy.subject.infra.basic.mapper.SubjectJudgeDao;
 import com.jingdianyy.subject.infra.basic.service.SubjectJudgeService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 判断题(SubjectJudge)表服务实现类
@@ -61,5 +62,14 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectJudgeDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 批量插入
+     * @param subjectJudgeList
+     */
+    @Override
+    public void batchInsert(List<SubjectJudge> subjectJudgeList) {
+        this.subjectJudgeDao.insertBatch(subjectJudgeList);
     }
 }

@@ -2,6 +2,8 @@ package com.jingdianyy.subject.infra.basic.service;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectMultiple;
 
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务接口
  *
@@ -42,4 +44,9 @@ public interface SubjectMultipleService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     * @param subjectMultipleList
+     */
+    void batchInsert(List<SubjectMultiple> subjectMultipleList);
 }

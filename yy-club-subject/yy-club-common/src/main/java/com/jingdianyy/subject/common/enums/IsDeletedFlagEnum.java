@@ -20,10 +20,10 @@ public enum IsDeletedFlagEnum {
         this.desc = desc;
     }
 
-    public static ResultCodeEnum getByCode(int code) {
-        for(ResultCodeEnum resultCodeEnum : ResultCodeEnum.values()) {
-            if(resultCodeEnum.code == code) {
-                return resultCodeEnum;
+    public static IsDeletedFlagEnum getByCode(int code) {
+        for(IsDeletedFlagEnum isDeletedFlagEnum : IsDeletedFlagEnum.values()) {
+            if(isDeletedFlagEnum.code == code) {
+                return isDeletedFlagEnum;
             }
         }
         return null;

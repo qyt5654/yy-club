@@ -5,6 +5,8 @@ import com.jingdianyy.subject.infra.basic.mapper.SubjectInfoDao;
 import com.jingdianyy.subject.infra.basic.service.SubjectInfoService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 题目信息表(SubjectInfo)表服务实现类
@@ -61,5 +63,22 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectInfoDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 查询数量
+     * @param subjectInfo
+     * @param labelId
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public int countByCondition(SubjectInfo subjectInfo, Long labelId, Long categoryId) {
+        return this.subjectInfoDao.countByCondition(subjectInfo, labelId, categoryId);
+    }
+
+    @Override
+    public List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long labelId, Long categoryId, int start, Integer pageSize) {
+        return this.subjectInfoDao.queryPage(subjectInfo, labelId, categoryId, start, pageSize);
     }
 }

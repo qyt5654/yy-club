@@ -1,6 +1,9 @@
 package com.jingdianyy.subject.infra.basic.service;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectBrief;
+
+import java.util.List;
+
 /**
  * 简答题(SubjectBrief)表服务接口
  *
@@ -41,4 +44,9 @@ public interface SubjectBriefService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     * @param subjectBriefList
+     */
+    void batchInsert(List<SubjectBrief> subjectBriefList);
 }
