@@ -2,12 +2,13 @@ package com.jingdianyy.subject.infra.basic.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.jingdianyy.subject.infra.basic.entity.SubjectCategory;
-import com.jingdianyy.subject.infra.basic.dao.SubjectCategoryDao;
+import com.jingdianyy.subject.infra.basic.mapper.SubjectCategoryDao;
 import com.jingdianyy.subject.infra.basic.service.SubjectCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 题目分类(SubjectCategory)表服务实现类
@@ -54,9 +55,8 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService {
      * @return 实例对象
      */
     @Override
-    public SubjectCategory update(SubjectCategory subjectCategory) {
-        this.subjectCategoryDao.update(subjectCategory);
-        return this.queryById(subjectCategory.getId());
+    public int update(SubjectCategory subjectCategory) {
+        return this.subjectCategoryDao.update(subjectCategory);
     }
 
     /**
@@ -68,5 +68,10 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectCategoryDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<SubjectCategory> queryCategory(SubjectCategory subjectCategory) {
+        return this.subjectCategoryDao.queryCategory(subjectCategory);
     }
 }

@@ -3,7 +3,6 @@ package com.jingdianyy.subject.domain.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 题目分类(SubjectCategory)实体类

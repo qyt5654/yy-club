@@ -1,4 +1,4 @@
-package com.jingdianyy.subject.infra.basic.dao;
+package com.jingdianyy.subject.infra.basic.mapper;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectCategory;
 import org.apache.ibatis.annotations.Mapper;
@@ -71,5 +71,6 @@ public interface SubjectCategoryDao {
      */
     int deleteById(Long id);
 
+    List<SubjectCategory> queryCategory(SubjectCategory subjectCategory);
 }
 
