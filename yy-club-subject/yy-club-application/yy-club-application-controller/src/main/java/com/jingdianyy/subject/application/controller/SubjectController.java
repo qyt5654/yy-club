@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-//@RequestMapping()
+@RequestMapping("/subject")
 public class SubjectController {
 
     @Resource
@@ -78,11 +78,28 @@ public class SubjectController {
             PageResult<SubjectInfoDTO> subjectInfoDTOPageResult = SubjectInfoDTOConverter.INSTANCE.converterBoToPageResultDTO(boPageResult);
             return Result.ok(subjectInfoDTOPageResult);
         }catch (Exception e){
-            log.error("SubjectCategoryController.add.error:{}", e.getMessage() ,e);
-            return Result.fail("新增题目失败");
+            log.error("SubjectCategoryController.getSubjectPage.error:{}", e.getMessage() ,e);
+            return Result.fail("查询题目列表失败");
         }
     }
 
-
-
+    /**
+     * 查询题目信息
+     */
+    @PostMapping("/getSubjectInfo")
+    public Result<SubjectInfoDTO> getSubjectInfo(@RequestBody SubjectInfoDTO subjectInfoDTO){
+        try{
+            if(log.isDebugEnabled()){
+                log.info("SubjectController.getSubjectInfo.dto:{}", JSON.toJSONString(subjectInfoDTO));
+            }
+            Preconditions.checkNotNull(subjectInfoDTO.getId(), "题目id不能为空");
+            SubjectInfoBo subjectInfoBo = SubjectInfoDTOConverter.INSTANCE.converterDTOToBo(subjectInfoDTO);
+            SubjectInfoBo subjectInfoBO = subjectInfoDomainService.getSubjectInfo(subjectInfoBo);
+            SubjectInfoDTO subjectInfoDTO1 = SubjectInfoDTOConverter.INSTANCE.converterBoToDTO(subjectInfoBO);
+            return Result.ok(subjectInfoDTO1);
+        }catch (Exception e){
+            log.error("SubjectCategoryController.getSubjectInfo.error:{}", e.getMessage() ,e);
+            return Result.fail("查询题目信息失败");
+        }
+    }
 }

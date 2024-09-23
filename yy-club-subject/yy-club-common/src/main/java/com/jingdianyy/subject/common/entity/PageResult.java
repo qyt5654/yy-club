@@ -1,12 +1,16 @@
 package com.jingdianyy.subject.common.entity;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * 分页返回的实体
  */
-public class PageResult<T> {
+@Data
+public class PageResult<T> implements Serializable {
 
     //当前页码
     private Integer pageNo = 1;
@@ -33,7 +37,7 @@ public class PageResult<T> {
     public void setTotal(Integer total){
         this.total = total;
         if(this.pageSize > 0){
-            this.totalPages = (total/this.totalPages) + (total % this.totalPages == 0 ? 0 : 1);
+            this.totalPages = (total/this.pageSize) + (total % this.pageSize == 0 ? 0 : 1);
         }else{
             this.totalPages = 0;
         }

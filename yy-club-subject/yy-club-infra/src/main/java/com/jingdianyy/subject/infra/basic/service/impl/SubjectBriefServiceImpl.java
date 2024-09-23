@@ -37,9 +37,8 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
      * @return 实例对象
      */
     @Override
-    public SubjectBrief insert(SubjectBrief subjectBrief) {
-        this.subjectBriefDao.insert(subjectBrief);
-        return subjectBrief;
+    public int insert(SubjectBrief subjectBrief) {
+        return this.subjectBriefDao.insert(subjectBrief);
     }
 
     /**
@@ -72,5 +71,10 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Override
     public void batchInsert(List<SubjectBrief> subjectBriefList) {
         this.subjectBriefDao.insertBatch(subjectBriefList);
+    }
+
+    @Override
+    public SubjectBrief queryByCondition(SubjectBrief subjectBrief) {
+        return this.subjectBriefDao.queryAllByLimit(subjectBrief);
     }
 }

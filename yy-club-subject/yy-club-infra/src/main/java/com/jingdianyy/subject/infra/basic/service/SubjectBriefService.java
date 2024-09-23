@@ -26,7 +26,7 @@ public interface SubjectBriefService {
      * @param subjectBrief 实例对象
      * @return 实例对象
      */
-    SubjectBrief insert(SubjectBrief subjectBrief);
+    int insert(SubjectBrief subjectBrief);
 
     /**
      * 修改数据
@@ -49,4 +49,6 @@ public interface SubjectBriefService {
      * @param subjectBriefList
      */
     void batchInsert(List<SubjectBrief> subjectBriefList);
+
+    SubjectBrief queryByCondition(SubjectBrief subjectBrief);
 }

@@ -26,7 +26,7 @@ public interface SubjectInfoService {
      * @param subjectInfo 实例对象
      * @return 实例对象
      */
-    SubjectInfo insert(SubjectInfo subjectInfo);
+    int insert(SubjectInfo subjectInfo);
 
     /**
      * 修改数据

@@ -3,12 +3,11 @@ package com.jingdianyy.subject.domain.service.Impl;
 import com.alibaba.fastjson.JSON;
 import com.jingdianyy.subject.common.entity.PageResult;
 import com.jingdianyy.subject.common.enums.IsDeletedFlagEnum;
-import com.jingdianyy.subject.common.handler.subject.SubjectTypeHandler;
-import com.jingdianyy.subject.common.handler.subject.SubjectTypeHandlerFactory;
+import com.jingdianyy.subject.domain.entity.SubjectOptionBo;
+import com.jingdianyy.subject.domain.handler.subject.SubjectTypeHandler;
+import com.jingdianyy.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.jingdianyy.subject.domain.convert.SubjectInfoConverter;
-import com.jingdianyy.subject.domain.convert.SubjectLabelConverter;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
-import com.jingdianyy.subject.domain.entity.SubjectLabelBo;
 import com.jingdianyy.subject.domain.service.SubjectInfoDomainService;
 import com.jingdianyy.subject.domain.service.SubjectLabelDomainService;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfo;
@@ -19,11 +18,9 @@ import com.jingdianyy.subject.infra.basic.service.SubjectLabelService;
 import com.jingdianyy.subject.infra.basic.service.SubjectMappingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,17 +35,22 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
     private SubjectTypeHandlerFactory subjectTypeHandlerFactory;
     @Resource
     private SubjectMappingService subjectMappingService;
+    @Resource
+    private SubjectLabelService subjectLabelService;
 
     /**
      * 添加题目
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void add(SubjectInfoBo subjectInfoBo) {
         if (log.isDebugEnabled()) {
             log.debug("SubjectInfoDomainServiceImpl.add.bo:{}", JSON.toJSONString(subjectInfoBo));
         }
         SubjectInfo subjectInfo = SubjectInfoConverter.INSTANCE.convertBoToInfo(subjectInfoBo);
+        subjectInfo.setIsDeleted(IsDeletedFlagEnum.UN_DELETE.getCode());
         subjectInfoService.insert(subjectInfo);
+        subjectInfoBo.setId(subjectInfo.getId());
         SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfoBo.getSubjectType());
         handler.add(subjectInfoBo);
         List<SubjectMapping> subjectMappings = getSubjectMappings(subjectInfoBo, subjectInfo);
@@ -71,6 +73,7 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
                 subjectMapping.setSubjectId(subjectInfo.getId());
                 subjectMapping.setLabelId(labelId);
                 subjectMapping.setCategoryId(categoryId);
+                subjectMapping.setIsDeleted(IsDeletedFlagEnum.UN_DELETE.getCode());
                 subjectMappings.add(subjectMapping);
             });
         });
@@ -98,5 +101,35 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         pageResult.setRecords(subjectInfoBos);
         pageResult.setTotal(count);
         return pageResult;
+    }
+
+    /**
+     * 查询题目信息
+     * @param subjectInfoBo
+     * @return
+     */
+    @Override
+    public SubjectInfoBo getSubjectInfo(SubjectInfoBo subjectInfoBo) {
+        SubjectInfo subjectInfo = subjectInfoService.queryById(subjectInfoBo.getId());
+        SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfo.getSubjectType());
+        SubjectOptionBo optionBO = handler.query(subjectInfo.getId());
+
+        SubjectInfoBo bo = SubjectInfoConverter.INSTANCE.convertOptionAndInfoToBo(optionBO, subjectInfo);
+        SubjectMapping subjectMapping = new SubjectMapping();
+        subjectMapping.setSubjectId(subjectInfo.getId());
+        subjectMapping.setIsDeleted(IsDeletedFlagEnum.UN_DELETE.getCode());
+
+        List<SubjectMapping> mappingList = subjectMappingService.queryLabelId(subjectMapping);
+        List<Long> labelIdList = mappingList.stream().map(SubjectMapping::getLabelId).collect(Collectors.toList());
+
+        List<SubjectLabel> labelList = subjectLabelService.batchQueryById(labelIdList);
+        List<String> labelNameList = labelList.stream().map(SubjectLabel::getLabelName).collect(Collectors.toList());
+
+        bo.setLabelNames(labelNameList);
+//        bo.setLiked(subjectLikedDomainService.isLiked(subjectInfoBo.getId().toString(), LoginUtil.getLoginId()));
+//        bo.setLikedCount(subjectLikedDomainService.getLikedCount(subjectInfoBO.getId().toString()));
+//        assembleSubjectCursor(subjectInfoBO, bo);
+        return bo;
+
     }
 }

@@ -49,4 +49,6 @@ public interface SubjectJudgeService {
      * @param subjectJudgeList
      */
     void batchInsert(List<SubjectJudge> subjectJudgeList);
+
+    List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge);
 }

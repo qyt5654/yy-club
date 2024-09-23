@@ -1,8 +1,7 @@
 package com.jingdianyy.subject.domain.convert;
 
-import com.jingdianyy.subject.domain.entity.SubjectCategoryBo;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
-import com.jingdianyy.subject.infra.basic.entity.SubjectCategory;
+import com.jingdianyy.subject.domain.entity.SubjectOptionBo;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -19,4 +18,6 @@ public interface SubjectInfoConverter {
     List<SubjectInfoBo> convertListInfoToBo(List<SubjectInfo> subjectInfoList);
 
 
+    SubjectInfoBo convertOptionToBo(SubjectOptionBo optionBo);
+    SubjectInfoBo convertOptionAndInfoToBo(SubjectOptionBo optionBo, SubjectInfo subjectInfo);
 }

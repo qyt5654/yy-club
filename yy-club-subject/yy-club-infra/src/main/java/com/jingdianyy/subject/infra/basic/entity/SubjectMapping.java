@@ -44,7 +44,6 @@ public class SubjectMapping implements Serializable {
      * 修改时间
      */
     private Date updateTime;
-
     /**
      * 是否删除
      */

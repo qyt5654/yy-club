@@ -16,6 +16,7 @@ public interface RadioSubjectConverter {
 
     RadioSubjectConverter INSTANCE = Mappers.getMapper(RadioSubjectConverter.class);
 
-    SubjectRadio convertBoToRadio(SubjectAnswerBo subjectAnswerBo);
+    List<SubjectAnswerBo> convertEntityToBoList(List<SubjectRadio> result);
 
+    SubjectRadio convertBoToEntity(SubjectAnswerBo option);
 }

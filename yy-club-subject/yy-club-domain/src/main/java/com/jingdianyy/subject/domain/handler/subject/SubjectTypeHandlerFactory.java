@@ -1,4 +1,4 @@
-package com.jingdianyy.subject.common.handler.subject;
+package com.jingdianyy.subject.domain.handler.subject;
 
 import com.jingdianyy.subject.common.enums.SubjectInfoTypeEnum;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,11 +20,13 @@ public class SubjectTypeHandlerFactory implements InitializingBean {
 
     private Map<SubjectInfoTypeEnum, SubjectTypeHandler> handlerMap = new HashMap<>();
 
+    //根据type获取相对应的策略
     public SubjectTypeHandler getHandler(int subjectType) {
         SubjectInfoTypeEnum subjectInfoTypeEnum = SubjectInfoTypeEnum.getByCode(subjectType);
         return handlerMap.get(subjectInfoTypeEnum);
     }
 
+    //将所有策略放入map
     @Override
     public void afterPropertiesSet() throws Exception {
         for (SubjectTypeHandler subjectTypeHandler : subjectTypeHandlers) {

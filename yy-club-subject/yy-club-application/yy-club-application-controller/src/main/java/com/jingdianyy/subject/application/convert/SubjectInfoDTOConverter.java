@@ -13,6 +13,8 @@ public interface SubjectInfoDTOConverter {
 
     SubjectInfoBo converterDTOToBo(SubjectInfoDTO subjectInfoDTO);
 
+    SubjectInfoDTO converterBoToDTO(SubjectInfoBo subjectInfoBo);
+
     PageResult<SubjectInfoDTO> converterBoToPageResultDTO(PageResult<SubjectInfoBo> pageResult);
 
 }

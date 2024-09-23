@@ -5,6 +5,7 @@ import com.jingdianyy.subject.infra.basic.mapper.SubjectMultipleDao;
 import com.jingdianyy.subject.infra.basic.service.SubjectMultipleService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -71,5 +72,10 @@ public class SubjectMultipleServiceImpl implements SubjectMultipleService {
     @Override
     public void batchInsert(List<SubjectMultiple> subjectMultipleList) {
         this.subjectMultipleDao.insertBatch(subjectMultipleList);
+    }
+
+    @Override
+    public List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple) {
+        return this.subjectMultipleDao.queryAllByLimit(subjectMultiple);
     }
 }

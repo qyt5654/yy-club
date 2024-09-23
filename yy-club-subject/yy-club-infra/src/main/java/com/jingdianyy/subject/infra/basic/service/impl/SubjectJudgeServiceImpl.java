@@ -5,6 +5,7 @@ import com.jingdianyy.subject.infra.basic.mapper.SubjectJudgeDao;
 import com.jingdianyy.subject.infra.basic.service.SubjectJudgeService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -71,5 +72,10 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
     @Override
     public void batchInsert(List<SubjectJudge> subjectJudgeList) {
         this.subjectJudgeDao.insertBatch(subjectJudgeList);
+    }
+
+    @Override
+    public List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge) {
+        return this.subjectJudgeDao.queryAllByLimit(subjectJudge);
     }
 }
