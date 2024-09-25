@@ -1,6 +1,7 @@
 package com.jingdianyy.subject.domain.service.Impl;
 
 import com.alibaba.fastjson.JSON;
+import com.jingdianyy.subject.common.enums.CategoryTypeEnum;
 import com.jingdianyy.subject.common.enums.IsDeletedFlagEnum;
 import com.jingdianyy.subject.domain.convert.SubjectCategoryConverter;
 import com.jingdianyy.subject.domain.convert.SubjectLabelConverter;
@@ -33,6 +34,9 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
     @Resource
     private SubjectMappingService subjectMappingService;
+
+    @Resource
+    private SubjectCategoryService subjectCategoryService;
 
     /**
      * 添加表签
@@ -85,6 +89,15 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
     @Override
     public List<SubjectLabelBo> queryLabelByCategoryId(SubjectLabelBo subjectLabelBo) {
+        //如果当前分类是一级分类则查询所有标签
+        SubjectCategory subjectCategory = subjectCategoryService.queryById(subjectLabelBo.getCategoryId());
+        if(CategoryTypeEnum.PRIMARY.getCode() == subjectCategory.getCategoryType()){
+            SubjectLabel subjectLabel = new SubjectLabel();
+            subjectLabel.setCategoryId(subjectLabelBo.getCategoryId());
+            subjectLabel.setIsDeleted(IsDeletedFlagEnum.UN_DELETE.getCode());
+            List<SubjectLabel> labelList = subjectLabelService.queryByCondtion(subjectLabel);
+            return SubjectLabelConverter.INSTANCE.convertListToBoList(labelList);
+        }
         Long categoryId = subjectLabelBo.getCategoryId();
         SubjectMapping subjectMapping = new SubjectMapping();
         subjectMapping.setCategoryId(categoryId);

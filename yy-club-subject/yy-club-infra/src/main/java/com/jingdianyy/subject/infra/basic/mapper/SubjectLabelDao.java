@@ -77,5 +77,7 @@ public interface SubjectLabelDao {
      * @return
      */
     List<SubjectLabel> batchQueryById(@Param("labelIdList") List<Long> labelIdList);
+
+    List<SubjectLabel> queryAllByLimit(SubjectLabel subjectLabel);
 }
 
