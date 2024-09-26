@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/yy-club-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-appplication-controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-appplication-controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-infra/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-oss/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-oss/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/jc-club-application-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/jc-club-application-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-infra/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-subject-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yy-club-subject/yy-club-subject-api/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

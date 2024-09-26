@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-subject-api/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-common/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-infra/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-starter/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-mq/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-subject/yy-club-application/yy-club-application-controller/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-oss/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-gateway/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-mq/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-common/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-controller/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-starter/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-api/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-infra/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-job/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yy-club-domain" />
+        <module name="yy-club-subject-api" />
+        <module name="yy-club-auth-application-controller" />
+        <module name="yy-club-starter" />
+        <module name="yy-club-auth-infra" />
+        <module name="yy-club-auth-application-mq" />
+        <module name="yy-club-auth-api" />
+        <module name="yy-club-oss" />
+        <module name="yy-club-gateway" />
+        <module name="yy-club-infra" />
+        <module name="yy-club-auth-application-job" />
+        <module name="yy-club-auth-domain" />
+        <module name="yy-club-common" />
+        <module name="yy-club-auth-starter" />
+        <module name="yy-club-application-controller" />
+        <module name="yy-club-application-job" />
+        <module name="yy-club-auth-common" />
+        <module name="yy-club-application-mq" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jc-club-application-job" target="1.8" />
+      <module name="jj-club-gateway" target="1.8" />
+      <module name="yy-club-auth-appplication-controller" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
