@@ -29,6 +29,7 @@
             <artifactId>sa-token-spring-boot-starter</artifactId>
             <version>1.37.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.jingdianyy</groupId>
             <artifactId>yy-club-auth-infra</artifactId>
