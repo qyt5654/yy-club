@@ -2,6 +2,8 @@ package com.jingdianyy.auth.infra.basic.service;
 
 import com.jingdianyy.auth.infra.basic.entity.AuthRolePermission;
 
+import java.util.List;
+
 /**
  * 角色权限关联表(AuthRolePermission)表服务接口
  *
@@ -42,4 +44,10 @@ public interface AuthRolePermissionService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     * @param rolePermissionList
+     * @return
+     */
+    int insertBatch(List<AuthRolePermission> rolePermissionList);
 }
