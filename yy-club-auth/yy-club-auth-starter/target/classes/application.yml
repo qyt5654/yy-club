@@ -9,10 +9,8 @@ spring:
     host: 47.98.101.243
     # Redis服务器连接端口
     port: 6379
-    # Redis服务器连接密码（默认为空）
-    # password:
     # 连接超时时间
-    timeout: 2s
+    timeout: 10s
     lettuce:
       pool:
         # 连接池最大连接数
@@ -65,4 +63,4 @@ sa-token:
   is-share: true
   token-style: random-32
   is-log: true
-  token-prefix: yy
+  token-prefix: jichi

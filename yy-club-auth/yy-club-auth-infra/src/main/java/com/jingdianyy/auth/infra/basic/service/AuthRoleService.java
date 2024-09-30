@@ -2,6 +2,8 @@ package com.jingdianyy.auth.infra.basic.service;
 
 import com.jingdianyy.auth.infra.basic.entity.AuthRole;
 
+import java.util.List;
+
 /**
  * (AuthRole)表服务接口
  *

@@ -5,6 +5,7 @@ import com.jingdianyy.auth.infra.basic.mapper.AuthRoleDao;
 import com.jingdianyy.auth.infra.basic.service.AuthRoleService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**

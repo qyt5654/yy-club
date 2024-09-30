@@ -1,26 +1,25 @@
 package com.jingdianyy.auth.domain.service.Impl;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
+import com.google.gson.Gson;
 import com.jingdianyy.auth.common.enums.AuthUserStatusEnum;
 import com.jingdianyy.auth.common.enums.IsDeletedFlagEnum;
 import com.jingdianyy.auth.domain.constants.AuthConstant;
 import com.jingdianyy.auth.domain.convert.AuthUserBoConvert;
 import com.jingdianyy.auth.domain.entity.AuthUserBo;
+import com.jingdianyy.auth.domain.redis.RedisUtil;
 import com.jingdianyy.auth.domain.service.AuthUserDomainService;
-import com.jingdianyy.auth.infra.basic.entity.AuthRole;
-import com.jingdianyy.auth.infra.basic.entity.AuthUser;
-import com.jingdianyy.auth.infra.basic.entity.AuthUserRole;
-import com.jingdianyy.auth.infra.basic.service.AuthRoleService;
-import com.jingdianyy.auth.infra.basic.service.AuthUserRoleService;
-import com.jingdianyy.auth.infra.basic.service.AuthUserService;
+import com.jingdianyy.auth.infra.basic.entity.*;
+import com.jingdianyy.auth.infra.basic.service.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.transaction.Transaction;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionTemplate;
-
 import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 用户领域Impl
@@ -38,7 +37,20 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     @Resource
     private AuthRoleService authRoleService;
 
+    @Resource
+    private AuthPermissionService authPermissionService;
+
+    @Resource
+    private AuthRolePermissionService authRolePermissionService;
+
     private String salt = "chicken";
+
+    @Resource
+    private RedisUtil redisUtil;
+
+    private String authPermissionPrefix = "auth.permission";
+
+    private String authRolePrefix = "auth.Role";
 
     /**
      * 用户注册
@@ -64,7 +76,24 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         authUserRole.setRoleId(roleId);
         authUser.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
         authUserRoleService.insert(authUserRole);
+
         //要把当前用户的角色和权限都刷到我们的redis里
+        String roleKey = redisUtil.buildKey(authRolePrefix, authUser.getUserName());
+        List<AuthRole> roleList = new LinkedList<>();
+        roleList.add(roleResult);
+        log.info(new Gson().toJson(roleList));
+        redisUtil.set(roleKey, new Gson().toJson(roleList));
+
+        AuthRolePermission authRolePermission = new AuthRolePermission();
+        authRolePermission.setRoleId(roleId);
+        List<AuthRolePermission> rolePermissionList = authRolePermissionService.queryByCondition(authRolePermission);
+        List<Long> permissionIdList = rolePermissionList.stream().map(AuthRolePermission::getPermissionId).collect(Collectors.toList());
+
+        //根据permissionId查权限
+        List<AuthPermission> permissionList = authPermissionService.queryByRoleList(permissionIdList);
+        String permissionKey = redisUtil.buildKey(authPermissionPrefix, authUser.getUserName());
+        redisUtil.set(permissionKey, new Gson().toJson(permissionList));
+
         return count > 0;
     }
 

@@ -56,4 +56,4 @@ sa-token:
   is-share: true
   token-style: random-32
   is-log: true
-  token-prefix: yy
+  token-prefix: jichi

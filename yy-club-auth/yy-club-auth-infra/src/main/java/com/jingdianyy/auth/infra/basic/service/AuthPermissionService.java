@@ -2,6 +2,8 @@ package com.jingdianyy.auth.infra.basic.service;
 
 import com.jingdianyy.auth.infra.basic.entity.AuthPermission;
 
+import java.util.List;
+
 /**
  * (AuthPermission)表服务接口
  *
@@ -41,4 +43,11 @@ public interface AuthPermissionService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    /**
+     * 根据permissionId查权限
+     * @param permissionIdList
+     * @return
+     */
+    List<AuthPermission> queryByRoleList(List<Long> permissionIdList);
 }

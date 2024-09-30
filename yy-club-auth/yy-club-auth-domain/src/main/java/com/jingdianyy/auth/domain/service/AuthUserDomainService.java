@@ -8,7 +8,6 @@ import com.jingdianyy.auth.domain.entity.AuthUserBo;
  */
 public interface AuthUserDomainService {
 
-
     /**
      * 注册
      * @param authUserBo

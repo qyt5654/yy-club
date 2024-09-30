@@ -50,4 +50,6 @@ public interface AuthRolePermissionService {
      * @return
      */
     int insertBatch(List<AuthRolePermission> rolePermissionList);
+
+    List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission);
 }

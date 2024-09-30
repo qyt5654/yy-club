@@ -128,6 +128,16 @@
         </where>
     </select>
 
+    <select id="queryByRoleList" resultMap="AuthPermissionMap">
+        select
+            id,name,parent_id,type,menu_url,status,`show`,icon,permission_key,created_by,created_time,update_by,update_time,is_deleted
+        from auth_permission
+        where id in
+        <foreach collection="permissionIdList" close=")" open="(" separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into auth_permission(name,parent_id,`type`,menu_url,status,`show`,icon,permission_key,created_by,created_time,update_by,update_time,is_deleted)

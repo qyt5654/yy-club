@@ -5,6 +5,7 @@ import com.jingdianyy.auth.infra.basic.mapper.AuthRolePermissionDao;
 import com.jingdianyy.auth.infra.basic.service.AuthRolePermissionService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -66,5 +67,10 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
     @Override
     public int insertBatch(List<AuthRolePermission> rolePermissionList) {
         return this.authRolePermissionDao.insertBatch(rolePermissionList);
+    }
+
+    @Override
+    public List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission) {
+        return this.authRolePermissionDao.queryAllByLimit(authRolePermission);
     }
 }
