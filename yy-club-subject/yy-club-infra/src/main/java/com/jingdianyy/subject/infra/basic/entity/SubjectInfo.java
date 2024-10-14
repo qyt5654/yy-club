@@ -61,5 +61,7 @@ public class SubjectInfo implements Serializable {
      * 是否删除
      */
     private Integer isDeleted;
+
+    private Integer subjectCount;
 }
 

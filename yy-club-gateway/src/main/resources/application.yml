@@ -36,7 +36,7 @@ spring:
             - StripPrefix=1
 
         - id: auth
-          uri: lb://yy-club-auth
+          uri: lb://yy-club-auth-dev
           predicates:
             - Path=/auth/**
           filters:

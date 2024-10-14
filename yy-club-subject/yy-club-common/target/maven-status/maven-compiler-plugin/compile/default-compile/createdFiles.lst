@@ -5,3 +5,4 @@ com\jingdianyy\subject\common\entity\PageInfo.class
 com\jingdianyy\subject\common\enums\IsDeletedFlagEnum.class
 com\jingdianyy\subject\common\entity\Result.class
 com\jingdianyy\subject\common\enums\SubjectInfoTypeEnum.class
+com\jingdianyy\subject\common\util\IdWorkerUtil.class

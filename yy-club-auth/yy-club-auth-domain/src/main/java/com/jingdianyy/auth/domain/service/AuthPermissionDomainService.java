@@ -2,6 +2,8 @@ package com.jingdianyy.auth.domain.service;
 
 import com.jingdianyy.auth.domain.entity.AuthPermissionBo;
 
+import java.util.List;
+
 public interface AuthPermissionDomainService {
 
     /**
@@ -24,4 +26,11 @@ public interface AuthPermissionDomainService {
      * @return
      */
     Boolean delete(AuthPermissionBo authPermissionBo);
+
+    /**
+     * 获取用户权限
+     * @param userName
+     * @return
+     */
+    List<String> getPermission(String userName);
 }

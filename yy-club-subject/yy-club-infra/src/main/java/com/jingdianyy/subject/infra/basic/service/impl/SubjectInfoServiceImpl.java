@@ -80,4 +80,9 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     public List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long labelId, Long categoryId, int start, Integer pageSize) {
         return this.subjectInfoDao.queryPage(subjectInfo, labelId, categoryId, start, pageSize);
     }
+
+    @Override
+    public List<SubjectInfo> getContributeCount() {
+        return this.subjectInfoDao.getContributeCount();
+    }
 }

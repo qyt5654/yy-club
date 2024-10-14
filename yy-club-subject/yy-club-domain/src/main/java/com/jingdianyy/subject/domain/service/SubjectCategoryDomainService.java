@@ -4,6 +4,7 @@ import com.jingdianyy.subject.domain.entity.SubjectCategoryBo;
 import com.jingdianyy.subject.infra.basic.entity.SubjectCategory;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface SubjectCategoryDomainService {
 
@@ -23,4 +24,11 @@ public interface SubjectCategoryDomainService {
      * 删除分类
      */
     Boolean delete(SubjectCategoryBo subjectCategoryBo);
+
+    /**
+     * 查询分类及标签（一次性）
+     * @param subjectCategoryBo
+     * @return
+     */
+    List<SubjectCategoryBo> queryCategoryAndLabel(SubjectCategoryBo subjectCategoryBo) throws ExecutionException, InterruptedException;
 }

@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-mq/pom.xml" />
         <option value="$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-appplication-controller/pom.xml" />
         <option value="$PROJECT_DIR$/yy-club-wx/pom.xml" />
+        <option value="$PROJECT_DIR$/yy-club-gen/pom.xml" />
+        <option value="$PROJECT_DIR$/yy-club-common-starter/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

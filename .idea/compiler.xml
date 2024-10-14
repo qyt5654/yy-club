@@ -24,6 +24,8 @@
       <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-infra/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/yy-club-auth/yy-club-auth-application/yy-club-auth-application-job/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/yy-club-wx/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-gen/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-common-starter/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -31,6 +33,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="yy-club-domain" />
+        <module name="easy-gen-code-spring-boot-starter" />
         <module name="yy-club-subject-api" />
         <module name="yy-club-auth-application-controller" />
         <module name="yy-club-starter" />
@@ -41,6 +44,7 @@
         <module name="yy-club-gateway" />
         <module name="yy-club-infra" />
         <module name="yy-club-auth-application-job" />
+        <module name="yy-club-gen" />
         <module name="yy-club-auth-domain" />
         <module name="yy-club-common" />
         <module name="yy-club-auth-starter" />
@@ -56,5 +60,10 @@
       <module name="jj-club-gateway" target="1.8" />
       <module name="yy-club-auth-appplication-controller" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="yy-club-gen" options="-parameters" />
+    </option>
   </component>
 </project>

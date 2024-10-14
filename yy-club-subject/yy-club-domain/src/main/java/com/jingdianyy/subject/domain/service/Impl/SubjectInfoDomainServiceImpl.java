@@ -3,26 +3,33 @@ package com.jingdianyy.subject.domain.service.Impl;
 import com.alibaba.fastjson.JSON;
 import com.jingdianyy.subject.common.entity.PageResult;
 import com.jingdianyy.subject.common.enums.IsDeletedFlagEnum;
+import com.jingdianyy.subject.common.util.IdWorkerUtil;
+import com.jingdianyy.subject.common.util.LoginUtil;
 import com.jingdianyy.subject.domain.entity.SubjectOptionBo;
 import com.jingdianyy.subject.domain.handler.subject.SubjectTypeHandler;
 import com.jingdianyy.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.jingdianyy.subject.domain.convert.SubjectInfoConverter;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
+import com.jingdianyy.subject.domain.redis.RedisUtil;
 import com.jingdianyy.subject.domain.service.SubjectInfoDomainService;
-import com.jingdianyy.subject.domain.service.SubjectLabelDomainService;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfo;
+import com.jingdianyy.subject.infra.basic.entity.SubjectInfoEs;
 import com.jingdianyy.subject.infra.basic.entity.SubjectLabel;
 import com.jingdianyy.subject.infra.basic.entity.SubjectMapping;
+import com.jingdianyy.subject.infra.basic.service.SubjectEsService;
 import com.jingdianyy.subject.infra.basic.service.SubjectInfoService;
 import com.jingdianyy.subject.infra.basic.service.SubjectLabelService;
 import com.jingdianyy.subject.infra.basic.service.SubjectMappingService;
+import com.jingdianyy.subject.infra.entity.UserInfo;
+import com.jingdianyy.subject.infra.rpc.UserRPC;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +44,14 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
     private SubjectMappingService subjectMappingService;
     @Resource
     private SubjectLabelService subjectLabelService;
+    @Resource
+    private SubjectEsService subjectEsService;
+    @Resource
+    private UserRPC userRPC;
+    @Resource
+    private RedisUtil redisUtil;
+
+    private static final String RANK_KEY = "subject_rank";
 
     /**
      * 添加题目
@@ -55,6 +70,18 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         handler.add(subjectInfoBo);
         List<SubjectMapping> subjectMappings = getSubjectMappings(subjectInfoBo, subjectInfo);
         subjectMappingService.batchInsert(subjectMappings);
+        //同步到es
+        SubjectInfoEs subjectInfoEs = new SubjectInfoEs();
+        subjectInfoEs.setDocId(new IdWorkerUtil(1, 1, 1).nextId());
+        subjectInfoEs.setSubjectId(subjectInfoBo.getId());
+        subjectInfoEs.setSubjectAnswer(subjectInfoBo.getSubjectAnswer());
+        subjectInfoEs.setCreateTime(new Date().getTime());
+        subjectInfoEs.setCreateUser("yyppcc");
+        subjectInfoEs.setSubjectName(subjectInfo.getSubjectName());
+        subjectInfoEs.setSubjectType(subjectInfo.getSubjectType());
+        subjectEsService.insert(subjectInfoEs);
+        //放入redis记录排行榜
+        redisUtil.addScore(RANK_KEY, LoginUtil.getLoginId(), 1);
     }
 
     /**
@@ -110,26 +137,84 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
      */
     @Override
     public SubjectInfoBo getSubjectInfo(SubjectInfoBo subjectInfoBo) {
+        //1.查询subject_info表
         SubjectInfo subjectInfo = subjectInfoService.queryById(subjectInfoBo.getId());
+
+        //2.查询对应题目表-->拿到题目答案选项
         SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfo.getSubjectType());
         SubjectOptionBo optionBO = handler.query(subjectInfo.getId());
-
         SubjectInfoBo bo = SubjectInfoConverter.INSTANCE.convertOptionAndInfoToBo(optionBO, subjectInfo);
+
+        //3.查询subject_mapping表
         SubjectMapping subjectMapping = new SubjectMapping();
         subjectMapping.setSubjectId(subjectInfo.getId());
         subjectMapping.setIsDeleted(IsDeletedFlagEnum.UN_DELETE.getCode());
-
         List<SubjectMapping> mappingList = subjectMappingService.queryLabelId(subjectMapping);
-        List<Long> labelIdList = mappingList.stream().map(SubjectMapping::getLabelId).collect(Collectors.toList());
 
+        //4.拿到labelName
+        List<Long> labelIdList = mappingList.stream().map(SubjectMapping::getLabelId).collect(Collectors.toList());
         List<SubjectLabel> labelList = subjectLabelService.batchQueryById(labelIdList);
         List<String> labelNameList = labelList.stream().map(SubjectLabel::getLabelName).collect(Collectors.toList());
-
         bo.setLabelNames(labelNameList);
-//        bo.setLiked(subjectLikedDomainService.isLiked(subjectInfoBo.getId().toString(), LoginUtil.getLoginId()));
-//        bo.setLikedCount(subjectLikedDomainService.getLikedCount(subjectInfoBO.getId().toString()));
-//        assembleSubjectCursor(subjectInfoBO, bo);
         return bo;
 
+    }
+
+    /**
+     * 全文检索
+     * @param subjectInfoBo
+     * @return
+     */
+    @Override
+    public PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoBo subjectInfoBo) {
+        SubjectInfoEs subjectInfoEs = new SubjectInfoEs();
+        subjectInfoEs.setKeyWord(subjectInfoBo.getKeyWord());
+        subjectInfoEs.setPageSize(subjectInfoBo.getPageSize());
+        subjectInfoEs.setPageNo(subjectInfoBo.getPageNo());
+        return subjectEsService.querySubjectList(subjectInfoEs);
+    }
+
+    /**
+     * 获取题目贡献榜
+     * @return
+     */
+    @Override
+    public List<SubjectInfoBo> getContributeList() {
+        Set<ZSetOperations.TypedTuple<String>> typeTuples = redisUtil.rankWithScore(RANK_KEY, 0, 5);
+        if(log.isDebugEnabled()){
+            log.info("getContributeList.typeTuples:{}", JSON.toJSONString(typeTuples));
+        }
+
+        if(CollectionUtils.isEmpty(typeTuples)){
+            return Collections.emptyList();
+        }
+        List<SubjectInfoBo> boList = new LinkedList<>();
+        typeTuples.forEach(rank -> {
+            SubjectInfoBo subjectInfoBo = new SubjectInfoBo();
+            subjectInfoBo.setSubjectCount(rank.getScore().intValue());
+            UserInfo userInfo = userRPC.getUserInfo(rank.getValue());
+            subjectInfoBo.setCreateUser(userInfo.getNickName());
+            subjectInfoBo.setCreateUserAvatar(userInfo.getAvatar());
+            boList.add(subjectInfoBo);
+        });
+        return boList;
+
+        /**
+         * 数据库查询
+         */
+//        List<SubjectInfo> subjectInfoList = subjectInfoService.getContributeCount();
+//        if(CollectionUtils.isEmpty(subjectInfoList)){
+//            return Collections.emptyList();
+//        }
+//        List<SubjectInfoBo> boList = new LinkedList<>();
+//        subjectInfoList.forEach(subjectInfo -> {
+//            SubjectInfoBo subjectInfoBo = new SubjectInfoBo();
+//            subjectInfoBo.setSubjectCount(subjectInfo.getSubjectCount());
+//            UserInfo userInfo = userRPC.getUserInfo(subjectInfo.getCreatedBy());
+//            subjectInfoBo.setCreateUser(userInfo.getNickName());
+//            subjectInfoBo.setCreateUserAvatar(userInfo.getAvatar());
+//            boList.add(subjectInfoBo);
+//        });
+//        return boList;
     }
 }

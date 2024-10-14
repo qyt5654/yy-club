@@ -1,6 +1,7 @@
 package com.jingdianyy.auth.domain.service;
 
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import com.jingdianyy.auth.domain.entity.AuthUserBo;
 
 /**
@@ -34,4 +35,13 @@ public interface AuthUserDomainService {
      * @return
      */
     Boolean changeStatus(AuthUserBo authUserBo);
+
+    SaTokenInfo doLogin(String validCode);
+
+    /**
+     * 获取用户信息接口
+     * @param authUserBo
+     * @return
+     */
+    AuthUserBo getUserInfo(AuthUserBo authUserBo);
 }

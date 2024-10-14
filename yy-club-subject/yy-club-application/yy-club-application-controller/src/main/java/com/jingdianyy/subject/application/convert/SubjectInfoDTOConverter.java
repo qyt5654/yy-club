@@ -6,6 +6,8 @@ import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface SubjectInfoDTOConverter {
 
@@ -17,4 +19,5 @@ public interface SubjectInfoDTOConverter {
 
     PageResult<SubjectInfoDTO> converterBoToPageResultDTO(PageResult<SubjectInfoBo> pageResult);
 
+    List<SubjectInfoDTO> converterBoListToDTO(List<SubjectInfoBo> boList);
 }

@@ -2,18 +2,18 @@ package com.jingdianyy.auth.application.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.dev33.satoken.util.SaResult;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jingdianyy.auth.application.convert.AuthUserDTOConvert;
-import com.jingdianyy.auth.application.dto.AuthUserDTO;
-import com.jingdianyy.auth.common.entity.Result;
+import com.jingdianyy.auth.entity.Result;
 import com.jingdianyy.auth.domain.entity.AuthUserBo;
 import com.jingdianyy.auth.domain.service.AuthUserDomainService;
+import com.jingdianyy.auth.entity.AuthUserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -76,6 +76,47 @@ public class UserController {
     }
 
     /**
+     * 获取用户信息接口
+     * @param authUserDTO
+     * @return
+     */
+    @RequestMapping("getUserInfo")
+    public Result<AuthUserDTO> getUserInfo(@RequestBody AuthUserDTO authUserDTO) {
+        try{
+            if(log.isDebugEnabled()){
+                log.info("UserController.getUserInfo.dto:{}", JSON.toJSONString(authUserDTO));
+            }
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "用户名不能为空");
+            AuthUserBo authUserBo = AuthUserDTOConvert.INSTANCE.convertDTOToBo(authUserDTO);
+            AuthUserDTO authUserDTO1 = AuthUserDTOConvert.INSTANCE.convertBoToDTO(authUserDomainService.getUserInfo(authUserBo));
+            return Result.ok(authUserDTO1);
+        }catch (Exception e){
+            log.error("UserController.getUserInfo.error:{}", e.getMessage() ,e);
+            return Result.fail("获取用户信息失败");
+        }
+
+    }
+
+    /**
+     * 用户退出接口
+     * @param userName
+     * @return
+     */
+    @RequestMapping("logOut")
+    public Result logOut(@RequestParam String userName) {
+        try{
+            log.info("UserController.logOut.userName:{}", userName);
+            Preconditions.checkArgument(!StringUtils.isBlank(userName), "用户名不能为空");
+            StpUtil.logout(userName);
+            return Result.ok();
+        }catch (Exception e){
+            log.error("UserController.logOut.error:{}", e.getMessage() ,e);
+            return Result.fail("用户登出失败");
+        }
+
+    }
+
+    /**
      * 删除用户接口
      * @param authUserDTO
      * @return
@@ -115,13 +156,16 @@ public class UserController {
     }
 
     @RequestMapping("doLogin")
-    public SaResult doLogin(String username, String password) {
-        // 第1步，先登录上
-        StpUtil.login(10001);
-        // 第2步，获取 Token  相关参数
-        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-        // 第3步，返回给前端
-        return SaResult.data(tokenInfo);
+    public Result<SaTokenInfo> doLogin(@RequestParam("validCode") String validCode) {
+        try{
+            Preconditions.checkArgument(!StringUtils.isBlank(validCode), "验证码不能为空!");
+            return Result.ok(authUserDomainService.doLogin(validCode));
+        }catch (Exception e){
+            log.error("UserController.doLogin.error:{}", e.getMessage() ,e);
+            return Result.fail("用户登录失败");
+        }
+
+
     }
 
     @RequestMapping("isLogin")

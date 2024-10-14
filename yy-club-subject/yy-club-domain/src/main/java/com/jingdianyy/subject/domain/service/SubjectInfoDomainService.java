@@ -3,6 +3,7 @@ package com.jingdianyy.subject.domain.service;
 import com.jingdianyy.subject.common.entity.PageResult;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
 import com.jingdianyy.subject.domain.entity.SubjectLabelBo;
+import com.jingdianyy.subject.infra.basic.entity.SubjectInfoEs;
 
 import java.util.List;
 
@@ -29,4 +30,17 @@ public interface SubjectInfoDomainService {
      * @return
      */
     SubjectInfoBo getSubjectInfo(SubjectInfoBo subjectInfoBo);
+
+    /**
+     * 全文检索
+     * @param subjectInfoBo
+     * @return
+     */
+    PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoBo subjectInfoBo);
+
+    /**
+     * 获取题目贡献榜
+     * @return
+     */
+    List<SubjectInfoBo> getContributeList();
 }

@@ -1,6 +1,5 @@
-package com.jingdianyy.auth.common.entity;
+package com.jingdianyy.auth.entity;
 
-import com.jingdianyy.auth.common.enums.ResultCodeEnum;
 import lombok.Data;
 
 @Data

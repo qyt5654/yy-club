@@ -4,17 +4,16 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jingdianyy.auth.application.convert.AuthPermissionDTOConvert;
 import com.jingdianyy.auth.application.dto.AuthPermissionDTO;
-import com.jingdianyy.auth.common.entity.Result;
+import com.jingdianyy.auth.entity.Result;
 import com.jingdianyy.auth.domain.entity.AuthPermissionBo;
 import com.jingdianyy.auth.domain.service.AuthPermissionDomainService;
-import com.jingdianyy.auth.infra.basic.service.AuthPermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 角色controller
@@ -85,6 +84,23 @@ public class PermissionController {
         }catch (Exception e){
             log.error("PermissionController.delete.error:{}", e.getMessage() ,e);
             return Result.fail("删除权限失败");
+        }
+    }
+
+    /**
+     * 查询用户权限
+     * @param userName
+     * @return
+     */
+    @RequestMapping("getPermission")
+    public Result<List<String>> getPermission(String userName) {
+        try{
+            log.info("PermissionController.getPermission.userName:{}", userName);
+            Preconditions.checkArgument(!StringUtils.isBlank(userName), "用户id不能为空");
+            return Result.ok(authPermissionDomainService.getPermission(userName));
+        }catch (Exception e){
+            log.error("PermissionController.getPermission.error:{}", e.getMessage() ,e);
+            return Result.fail("查询用户权限失败");
         }
     }
 

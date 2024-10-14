@@ -11,7 +11,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-23T17:03:43+0800",
+    date = "2024-10-14T17:33:50+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_422 (Amazon.com Inc.)"
 )
 public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
@@ -24,6 +24,8 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
 
         SubjectInfoBo subjectInfoBo = new SubjectInfoBo();
 
+        subjectInfoBo.setPageNo( subjectInfoDTO.getPageNo() );
+        subjectInfoBo.setPageSize( subjectInfoDTO.getPageSize() );
         subjectInfoBo.setId( subjectInfoDTO.getId() );
         subjectInfoBo.setSubjectName( subjectInfoDTO.getSubjectName() );
         subjectInfoBo.setSubjectDifficult( subjectInfoDTO.getSubjectDifficult() );
@@ -41,6 +43,10 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         subjectInfoBo.setOptionList( subjectAnswerDTOListToSubjectAnswerBoList( subjectInfoDTO.getOptionList() ) );
         subjectInfoBo.setCategoryId( subjectInfoDTO.getCategoryId() );
         subjectInfoBo.setLabelId( subjectInfoDTO.getLabelId() );
+        subjectInfoBo.setKeyWord( subjectInfoDTO.getKeyWord() );
+        subjectInfoBo.setCreateUser( subjectInfoDTO.getCreateUser() );
+        subjectInfoBo.setCreateUserAvatar( subjectInfoDTO.getCreateUserAvatar() );
+        subjectInfoBo.setSubjectCount( subjectInfoDTO.getSubjectCount() );
 
         return subjectInfoBo;
     }
@@ -53,6 +59,8 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
 
         SubjectInfoDTO subjectInfoDTO = new SubjectInfoDTO();
 
+        subjectInfoDTO.setPageNo( subjectInfoBo.getPageNo() );
+        subjectInfoDTO.setPageSize( subjectInfoBo.getPageSize() );
         subjectInfoDTO.setId( subjectInfoBo.getId() );
         subjectInfoDTO.setSubjectName( subjectInfoBo.getSubjectName() );
         subjectInfoDTO.setSubjectDifficult( subjectInfoBo.getSubjectDifficult() );
@@ -70,6 +78,10 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         }
         subjectInfoDTO.setCategoryId( subjectInfoBo.getCategoryId() );
         subjectInfoDTO.setLabelId( subjectInfoBo.getLabelId() );
+        subjectInfoDTO.setKeyWord( subjectInfoBo.getKeyWord() );
+        subjectInfoDTO.setCreateUser( subjectInfoBo.getCreateUser() );
+        subjectInfoDTO.setCreateUserAvatar( subjectInfoBo.getCreateUserAvatar() );
+        subjectInfoDTO.setSubjectCount( subjectInfoBo.getSubjectCount() );
 
         return subjectInfoDTO;
     }
@@ -86,11 +98,25 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         pageResult1.setPageSize( pageResult.getPageSize() );
         pageResult1.setPageNo( pageResult.getPageNo() );
         pageResult1.setTotalPages( pageResult.getTotalPages() );
-        pageResult1.setResult( subjectInfoBoListToSubjectInfoDTOList( pageResult.getResult() ) );
+        pageResult1.setResult( converterBoListToDTO( pageResult.getResult() ) );
         pageResult1.setStart( pageResult.getStart() );
         pageResult1.setEnd( pageResult.getEnd() );
 
         return pageResult1;
+    }
+
+    @Override
+    public List<SubjectInfoDTO> converterBoListToDTO(List<SubjectInfoBo> boList) {
+        if ( boList == null ) {
+            return null;
+        }
+
+        List<SubjectInfoDTO> list = new ArrayList<SubjectInfoDTO>( boList.size() );
+        for ( SubjectInfoBo subjectInfoBo : boList ) {
+            list.add( converterBoToDTO( subjectInfoBo ) );
+        }
+
+        return list;
     }
 
     protected List<Long> integerListToLongList(List<Integer> list) {
@@ -168,19 +194,6 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         List<SubjectAnswerDTO> list1 = new ArrayList<SubjectAnswerDTO>( list.size() );
         for ( SubjectAnswerBo subjectAnswerBo : list ) {
             list1.add( subjectAnswerBoToSubjectAnswerDTO( subjectAnswerBo ) );
-        }
-
-        return list1;
-    }
-
-    protected List<SubjectInfoDTO> subjectInfoBoListToSubjectInfoDTOList(List<SubjectInfoBo> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<SubjectInfoDTO> list1 = new ArrayList<SubjectInfoDTO>( list.size() );
-        for ( SubjectInfoBo subjectInfoBo : list ) {
-            list1.add( converterBoToDTO( subjectInfoBo ) );
         }
 
         return list1;

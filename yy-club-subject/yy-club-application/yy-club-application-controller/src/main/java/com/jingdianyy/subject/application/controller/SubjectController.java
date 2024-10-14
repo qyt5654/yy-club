@@ -7,9 +7,11 @@ import com.jingdianyy.subject.application.convert.SubjectInfoDTOConverter;
 import com.jingdianyy.subject.application.dto.SubjectInfoDTO;
 import com.jingdianyy.subject.common.entity.PageResult;
 import com.jingdianyy.subject.common.entity.Result;
+import com.jingdianyy.subject.domain.convert.SubjectInfoConverter;
 import com.jingdianyy.subject.domain.entity.SubjectAnswerBo;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
 import com.jingdianyy.subject.domain.service.SubjectInfoDomainService;
+import com.jingdianyy.subject.infra.basic.entity.SubjectInfoEs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -56,7 +58,7 @@ public class SubjectController {
             subjectInfoDomainService.add(subjectInfoBo);
             return Result.ok(true);
         }catch (Exception e){
-            log.error("SubjectCategoryController.add.error:{}", e.getMessage() ,e);
+            log.error("SubjectController.add.error:{}", e.getMessage() ,e);
             return Result.fail("新增题目失败");
         }
     }
@@ -78,8 +80,30 @@ public class SubjectController {
             PageResult<SubjectInfoDTO> subjectInfoDTOPageResult = SubjectInfoDTOConverter.INSTANCE.converterBoToPageResultDTO(boPageResult);
             return Result.ok(subjectInfoDTOPageResult);
         }catch (Exception e){
-            log.error("SubjectCategoryController.getSubjectPage.error:{}", e.getMessage() ,e);
+            log.error("SubjectController.getSubjectPage.error:{}", e.getMessage() ,e);
             return Result.fail("查询题目列表失败");
+        }
+    }
+
+    /**
+     * 全文检索
+     */
+    @PostMapping("/getSubjectPageBySearch")
+    public Result<PageResult<SubjectInfoEs>> getSubjectPageBySearch(@RequestBody SubjectInfoDTO subjectInfoDTO){
+        try{
+            if(log.isDebugEnabled()){
+                log.info("SubjectController.getSubjectPageBySearch.dto:{}", JSON.toJSONString(subjectInfoDTO));
+            }
+
+            Preconditions.checkArgument(StringUtils.isNotBlank(subjectInfoDTO.getKeyWord()), "关键词不能为空");
+            SubjectInfoBo subjectInfoBo = SubjectInfoDTOConverter.INSTANCE.converterDTOToBo(subjectInfoDTO);
+            subjectInfoBo.setPageNo(subjectInfoDTO.getPageNo());
+            subjectInfoBo.setPageSize(subjectInfoDTO.getPageSize());
+            PageResult<SubjectInfoEs> bopageResult = subjectInfoDomainService.getSubjectPageBySearch(subjectInfoBo);
+            return Result.ok(bopageResult);
+        }catch (Exception e){
+            log.error("SubjectController.getSubjectPageBySearch.error:{}", e.getMessage() ,e);
+            return Result.fail("全文检索失败");
         }
     }
 
@@ -98,8 +122,23 @@ public class SubjectController {
             SubjectInfoDTO subjectInfoDTO1 = SubjectInfoDTOConverter.INSTANCE.converterBoToDTO(subjectInfoBO);
             return Result.ok(subjectInfoDTO1);
         }catch (Exception e){
-            log.error("SubjectCategoryController.getSubjectInfo.error:{}", e.getMessage() ,e);
+            log.error("SubjectController.getSubjectInfo.error:{}", e.getMessage() ,e);
             return Result.fail("查询题目信息失败");
+        }
+    }
+
+    /**
+     * 获取题目贡献榜
+     */
+    @PostMapping("/getContributeList")
+    public Result<List<SubjectInfoDTO>> getContributeList(){
+        try{
+            List<SubjectInfoBo> boList = subjectInfoDomainService.getContributeList();
+            List<SubjectInfoDTO> dtoList = SubjectInfoDTOConverter.INSTANCE.converterBoListToDTO(boList);
+            return Result.ok(dtoList);
+        }catch (Exception e){
+            log.error("SubjectController.getContributeList.error:{}", e.getMessage() ,e);
+            return Result.fail("获取题目贡献榜失败");
         }
     }
 }

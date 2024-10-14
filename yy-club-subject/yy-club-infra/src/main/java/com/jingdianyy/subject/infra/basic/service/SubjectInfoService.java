@@ -54,4 +54,6 @@ public interface SubjectInfoService {
     int countByCondition(SubjectInfo subjectInfo, Long labelId, Long categoryId);
 
     List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long labelId, Long categoryId, int start, Integer pageSize);
+
+    List<SubjectInfo> getContributeCount();
 }

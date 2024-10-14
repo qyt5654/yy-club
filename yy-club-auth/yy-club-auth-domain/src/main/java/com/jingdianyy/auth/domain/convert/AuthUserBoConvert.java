@@ -12,4 +12,5 @@ public interface AuthUserBoConvert {
 
     AuthUser convertBoToEntity(AuthUserBo authUserBo);
 
+    AuthUserBo convertEntityToBo(AuthUser authUser);
 }

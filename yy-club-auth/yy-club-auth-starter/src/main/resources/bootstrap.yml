@@ -1,6 +1,6 @@
 spring:
   application:
-    name: yy-club-auth
+    name: yy-club-auth-dev
   profiles:
     active: dev
   cloud:

@@ -8,7 +8,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-23T17:03:43+0800",
+    date = "2024-10-14T17:33:50+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_422 (Amazon.com Inc.)"
 )
 public class SubjectCategoryDTOConverterImpl implements SubjectCategoryDTOConverter {
@@ -26,6 +26,7 @@ public class SubjectCategoryDTOConverterImpl implements SubjectCategoryDTOConver
         subjectCategoryBo.setCategoryType( subjectCategoryDTO.getCategoryType() );
         subjectCategoryBo.setImageUrl( subjectCategoryDTO.getImageUrl() );
         subjectCategoryBo.setParentId( subjectCategoryDTO.getParentId() );
+        subjectCategoryBo.setCount( subjectCategoryDTO.getCount() );
 
         return subjectCategoryBo;
     }
@@ -38,24 +39,26 @@ public class SubjectCategoryDTOConverterImpl implements SubjectCategoryDTOConver
 
         List<SubjectCategoryDTO> list = new ArrayList<SubjectCategoryDTO>( subjectCategoryBo.size() );
         for ( SubjectCategoryBo subjectCategoryBo1 : subjectCategoryBo ) {
-            list.add( subjectCategoryBoToSubjectCategoryDTO( subjectCategoryBo1 ) );
+            list.add( converterBoToDTO( subjectCategoryBo1 ) );
         }
 
         return list;
     }
 
-    protected SubjectCategoryDTO subjectCategoryBoToSubjectCategoryDTO(SubjectCategoryBo subjectCategoryBo) {
-        if ( subjectCategoryBo == null ) {
+    @Override
+    public SubjectCategoryDTO converterBoToDTO(SubjectCategoryBo bo) {
+        if ( bo == null ) {
             return null;
         }
 
         SubjectCategoryDTO subjectCategoryDTO = new SubjectCategoryDTO();
 
-        subjectCategoryDTO.setId( subjectCategoryBo.getId() );
-        subjectCategoryDTO.setCategoryName( subjectCategoryBo.getCategoryName() );
-        subjectCategoryDTO.setCategoryType( subjectCategoryBo.getCategoryType() );
-        subjectCategoryDTO.setImageUrl( subjectCategoryBo.getImageUrl() );
-        subjectCategoryDTO.setParentId( subjectCategoryBo.getParentId() );
+        subjectCategoryDTO.setId( bo.getId() );
+        subjectCategoryDTO.setCategoryName( bo.getCategoryName() );
+        subjectCategoryDTO.setCategoryType( bo.getCategoryType() );
+        subjectCategoryDTO.setImageUrl( bo.getImageUrl() );
+        subjectCategoryDTO.setParentId( bo.getParentId() );
+        subjectCategoryDTO.setCount( bo.getCount() );
 
         return subjectCategoryDTO;
     }

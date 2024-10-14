@@ -49,4 +49,7 @@ public interface SubjectCategoryService {
      * @return
      */
     List<SubjectCategory> queryCategory(SubjectCategory subjectCategory);
+
+
+    Integer querySubjectCount(Long id);
 }

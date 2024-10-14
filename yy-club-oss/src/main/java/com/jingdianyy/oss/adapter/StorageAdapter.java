@@ -2,6 +2,7 @@ package com.jingdianyy.oss.adapter;
 
 import com.jingdianyy.oss.entity.FileInfo;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.MultipartFilter;
 
 import java.io.InputStream;
 import java.util.List;
@@ -47,4 +48,12 @@ public interface StorageAdapter {
      * 删除文件
      */
     void deleteObject(String bucket, String objectName);
+
+    /**
+     * 获取文件路径
+     * @param bucketName
+     * @param objectName
+     * @return
+     */
+    String getUrl(String bucketName, String objectName) throws Exception;
 }

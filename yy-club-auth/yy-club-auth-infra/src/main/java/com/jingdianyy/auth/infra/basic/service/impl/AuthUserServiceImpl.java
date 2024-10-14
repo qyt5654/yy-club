@@ -5,6 +5,7 @@ import com.jingdianyy.auth.infra.basic.mapper.AuthUserDao;
 import com.jingdianyy.auth.infra.basic.service.AuthUserService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户信息表(AuthUser)表服务实现类
@@ -59,5 +60,15 @@ public class AuthUserServiceImpl implements AuthUserService {
     @Override
     public boolean deleteById(Long id) {
         return this.authUserDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 根据条件查询数量
+     * @param authUser
+     * @return
+     */
+    @Override
+    public List<AuthUser> queryByCondition(AuthUser authUser) {
+        return this.authUserDao.queryAllByLimit(authUser);
     }
 }
