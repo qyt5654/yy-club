@@ -1,0 +1,15 @@
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\context\LoginContextHolder.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\dto\AuthRolePermissionDTO.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\controller\PermissionController.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\dto\AuthPermissionDTO.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\config\GlobalConfig.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\convert\AuthPermissionDTOConvert.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\dto\AuthRoleDTO.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\convert\AuthRoleDTOConvert.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\controller\RoleController.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\controller\RolePermissionController.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\config\CustomNameThreadFactory.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\Interceptor\LoginInterceptor.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\convert\AuthUserDTOConvert.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\controller\UserController.java
+F:\club\yy-club\yy-club-auth\yy-club-auth-application\yy-club-auth-application-controller\src\main\java\com\jingdianyy\auth\application\convert\AuthRolePermissionDTOConvert.java

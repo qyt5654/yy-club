@@ -1,0 +1,7 @@
+com\jingdianyy\club\gateway\entity\AuthPermission.class
+com\jingdianyy\club\gateway\entity\AuthRole.class
+com\jingdianyy\club\gateway\GatewayApplication.class
+com\jingdianyy\club\gateway\redis\RedisConfig.class
+com\jingdianyy\club\gateway\auth\StpInterfaceImpl$2.class
+com\jingdianyy\club\gateway\auth\StpInterfaceImpl$1.class
+com\jingdianyy\club\gateway\redis\RedisUtil.class

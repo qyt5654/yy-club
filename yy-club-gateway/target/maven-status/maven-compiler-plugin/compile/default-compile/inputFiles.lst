@@ -1,0 +1,10 @@
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\entity\Result.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\enums\ResultCodeEnum.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\auth\SaTokenConfigure.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\entity\AuthPermission.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\auth\StpInterfaceImpl.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\exception\GatewayExceptionHandler.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\redis\RedisConfig.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\redis\RedisUtil.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\entity\AuthRole.java
+F:\club\yy-club\yy-club-gateway\src\main\java\com\jingdianyy\club\gateway\GatewayApplication.java

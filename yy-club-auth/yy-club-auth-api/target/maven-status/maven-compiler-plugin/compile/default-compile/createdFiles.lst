@@ -1,0 +1,4 @@
+com\jingdianyy\auth\entity\ResultCodeEnum.class
+com\jingdianyy\auth\entity\AuthUserDTO.class
+com\jingdianyy\auth\api\UserFeignService.class
+com\jingdianyy\auth\entity\Result.class
