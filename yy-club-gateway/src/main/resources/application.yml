@@ -57,7 +57,7 @@ spring:
             - StripPrefix=1
 
         - id: circle
-          uri: lb://jc-club-circle
+          uri: lb://yy-club-circle
           predicates:
             - Path=/circle/**
           filters:
