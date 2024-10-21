@@ -1,3 +1,4 @@
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\job\SyncLikedJob.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\Impl\SubjectCategoryDomainServiceImpl.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\SubjectCategoryDomainService.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\handler\subject\MultipleTypeHandler.java
@@ -9,14 +10,21 @@ F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subj
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectOptionBo.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\handler\subject\JudgeTypeHandler.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectAnswerBo.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\Impl\SubjectLikedDomainServiceImpl.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\convert\SubjectCategoryConverter.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\SubjectInfoDomainService.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectInfoBo.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\SubjectLabelDomainService.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\config\XxlJobConfig.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\config\ThreadPoolConfig.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\Impl\SubjectInfoDomainServiceImpl.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectLikedBO.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\handler\subject\SubjectTypeHandler.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\service\SubjectLikedDomainService.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\convert\SubjectInfoConverter.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\redis\RedisConfig.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\redis\RedisUtil.java
+F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\convert\SubjectLikedBOConverter.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\config\CustomNameThreadFactory.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectCategoryBo.java
 F:\club\yy-club\yy-club-subject\yy-club-domain\src\main\java\com\jingdianyy\subject\domain\entity\SubjectLabelBo.java

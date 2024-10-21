@@ -60,3 +60,19 @@ es:
     esConfig[0]:
       name: b1f11cf36d5a
       nodes: 47.98.101.243:9200
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    accessToken: default_token
+    executor:
+      appname: yy-club-subject
+      address:
+      ip: 127.0.0.1
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+rocketmq:
+  name-server: 117.72.90.148:9876
+  producer:
+    group: test-group

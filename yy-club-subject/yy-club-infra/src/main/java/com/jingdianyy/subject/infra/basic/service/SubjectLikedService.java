@@ -2,6 +2,8 @@ package com.jingdianyy.subject.infra.basic.service;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectLiked;
 
+import java.util.List;
+
 /**
  * 题目点赞表 表服务接口
  *
@@ -47,4 +49,9 @@ public interface SubjectLikedService {
      */
     SubjectLiked queryByCondition(SubjectLiked subjectLiked);
 
+    void batchInsert(List<SubjectLiked> subjectLikedList);
+
+    int countByCondition(SubjectLiked subjectLiked);
+
+    List<SubjectLiked> queryPage(SubjectLiked subjectLiked, int start, Integer pageSize);
 }

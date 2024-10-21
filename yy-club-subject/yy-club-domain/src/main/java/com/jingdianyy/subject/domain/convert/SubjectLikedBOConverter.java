@@ -5,6 +5,8 @@ import com.jingdianyy.subject.infra.basic.entity.SubjectLiked;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * 题目点赞表 bo转换器
  *
@@ -18,4 +20,5 @@ public interface SubjectLikedBOConverter {
 
     SubjectLiked convertBOToEntity(SubjectLikedBO subjectLikedBO);
 
+    List<SubjectLikedBO> convertListInfoToBo(List<SubjectLiked> subjectLikedList);
 }

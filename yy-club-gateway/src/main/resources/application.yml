@@ -48,6 +48,20 @@ spring:
             - Path=/subject/**
           filters:
             - StripPrefix=1
+
+        - id: practice
+          uri: lb://yy-club-practice
+          predicates:
+            - Path=/practice/**
+          filters:
+            - StripPrefix=1
+
+        - id: circle
+          uri: lb://jc-club-circle
+          predicates:
+            - Path=/circle/**
+          filters:
+            - StripPrefix=1
 sa-token:
   token-name: satoken
   timeout: 2592000

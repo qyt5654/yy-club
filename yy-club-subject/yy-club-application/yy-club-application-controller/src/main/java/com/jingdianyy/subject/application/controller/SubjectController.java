@@ -12,8 +12,13 @@ import com.jingdianyy.subject.domain.entity.SubjectAnswerBo;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
 import com.jingdianyy.subject.domain.service.SubjectInfoDomainService;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfoEs;
+import groovy.transform.ASTTest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +35,10 @@ public class SubjectController {
 
     @Resource
     private SubjectInfoDomainService subjectInfoDomainService;
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+    @Autowired
+    private DefaultMQProducer defaultMQProducer;
 
     /**
      * 添加题目
@@ -140,5 +149,14 @@ public class SubjectController {
             log.error("SubjectController.getContributeList.error:{}", e.getMessage() ,e);
             return Result.fail("获取题目贡献榜失败");
         }
+    }
+
+    /**
+     * 测试mq发送
+     */
+    @PostMapping("/pushMessage")
+    public Result<List<SubjectInfoDTO>> pushMessage(@Param("id") int id){
+        rocketMQTemplate.convertAndSend("first-topic", "yyppcc" + id);
+        return Result.ok(true);
     }
 }

@@ -1,6 +1,7 @@
 package com.jingdianyy.subject.domain.service;
 
 
+import com.jingdianyy.subject.common.entity.PageResult;
 import com.jingdianyy.subject.domain.entity.SubjectLikedBO;
 
 /**
@@ -14,7 +15,17 @@ public interface SubjectLikedDomainService {
     /**
      * 添加 题目点赞表 信息
      */
-    Boolean add(SubjectLikedBO subjectLikedBO);
+    void add(SubjectLikedBO subjectLikedBO);
+
+    /**
+     * 获取当前是否被点赞过
+     */
+    Boolean isLiked(String subjectId, String userId);
+
+    /**
+     * 获取当前题目的点赞数量
+     */
+    Integer getLikedCount(String subjectId);
 
     /**
      * 更新 题目点赞表 信息
@@ -26,4 +37,15 @@ public interface SubjectLikedDomainService {
      */
     Boolean delete(SubjectLikedBO subjectLikedBO);
 
+    /**
+     * 同步点赞数据
+     */
+    void syncLiked();
+
+    /**
+     * 查询我的点赞列表
+     */
+    PageResult<SubjectLikedBO> getSubjectLikedPage(SubjectLikedBO subjectLikedBO);
+
+    void syncLikedByMsg(SubjectLikedBO subjectLikedBO);
 }

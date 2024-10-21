@@ -1,6 +1,7 @@
 package com.jingdianyy.subject.infra.basic.mapper;
 
 import com.jingdianyy.subject.infra.basic.entity.SubjectMapping;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2024-09-21 19:55:38
  */
+@Mapper
 public interface SubjectMappingDao {
 
     /**

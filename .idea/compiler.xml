@@ -26,6 +26,9 @@
       <directory url="file://$PROJECT_DIR$/yy-club-wx/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/yy-club-gen/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/yy-club-common-starter/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-practice/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-practice/yy-club-practice-api/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/yy-club-practice/yy-club-practice-server/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -47,6 +50,8 @@
         <module name="yy-club-gen" />
         <module name="yy-club-auth-domain" />
         <module name="yy-club-common" />
+        <module name="yy-club-practice-api" />
+        <module name="yy-club-practice-server" />
         <module name="yy-club-auth-starter" />
         <module name="yy-club-application-controller" />
         <module name="yy-club-application-job" />

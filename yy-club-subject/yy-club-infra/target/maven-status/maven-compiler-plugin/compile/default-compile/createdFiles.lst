@@ -4,6 +4,7 @@ com\jingdianyy\subject\infra\basic\es\EsConfigProperties.class
 com\jingdianyy\subject\infra\basic\service\SubjectBriefService.class
 com\jingdianyy\subject\infra\basic\entity\SubjectCategory.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectRadioDao.class
+com\jingdianyy\subject\infra\basic\service\SubjectLikedService.class
 com\jingdianyy\subject\infra\basic\service\SubjectRadioService.class
 com\jingdianyy\subject\infra\basic\es\EsSearchRequest.class
 com\jingdianyy\subject\infra\basic\service\SubjectJudgeService.class
@@ -13,9 +14,11 @@ com\jingdianyy\subject\infra\basic\service\SubjectMultipleService.class
 com\jingdianyy\subject\infra\basic\es\EsRestClient.class
 com\jingdianyy\subject\infra\basic\entity\SubjectMapping.class
 com\jingdianyy\subject\infra\basic\service\impl\SubjectMappingServiceImpl.class
+com\jingdianyy\subject\infra\basic\mapper\SubjectLikedDao.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectCategoryDao.class
 com\jingdianyy\subject\infra\basic\service\SubjectLabelService.class
 com\jingdianyy\subject\infra\basic\service\impl\SubjectJudgeServiceImpl.class
+com\jingdianyy\subject\infra\basic\service\impl\SubjectLikedServiceImpl.class
 com\jingdianyy\subject\infra\basic\service\SubjectCategoryService.class
 com\jingdianyy\subject\infra\config\MybatisConfiguration.class
 com\jingdianyy\subject\infra\basic\utils\DruidEncryptUtil.class
@@ -29,11 +32,13 @@ com\jingdianyy\subject\infra\basic\entity\EsSubjectFields.class
 com\jingdianyy\subject\infra\basic\entity\SubjectBrief.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectMultipleDao.class
 com\jingdianyy\subject\infra\basic\service\SubjectMappingService.class
+com\jingdianyy\subject\infra\config\MybatisInterceptor.class
 com\jingdianyy\subject\infra\basic\es\EsIndexInfo.class
 com\jingdianyy\subject\infra\basic\service\impl\SubjectBriefServiceImpl.class
 com\jingdianyy\subject\infra\basic\entity\SubjectInfoEs.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectBriefDao.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectJudgeDao.class
+com\jingdianyy\subject\infra\basic\entity\SubjectLiked.class
 com\jingdianyy\subject\infra\basic\mapper\SubjectMappingDao.class
 com\jingdianyy\subject\infra\entity\UserInfo.class
 com\jingdianyy\subject\infra\basic\entity\SubjectJudge.class

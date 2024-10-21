@@ -12,6 +12,7 @@ import com.jingdianyy.subject.domain.convert.SubjectInfoConverter;
 import com.jingdianyy.subject.domain.entity.SubjectInfoBo;
 import com.jingdianyy.subject.domain.redis.RedisUtil;
 import com.jingdianyy.subject.domain.service.SubjectInfoDomainService;
+import com.jingdianyy.subject.domain.service.SubjectLikedDomainService;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfo;
 import com.jingdianyy.subject.infra.basic.entity.SubjectInfoEs;
 import com.jingdianyy.subject.infra.basic.entity.SubjectLabel;
@@ -46,6 +47,8 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
     private SubjectLabelService subjectLabelService;
     @Resource
     private SubjectEsService subjectEsService;
+    @Resource
+    private SubjectLikedDomainService subjectLikedDomainService;
     @Resource
     private UserRPC userRPC;
     @Resource
@@ -156,8 +159,23 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         List<SubjectLabel> labelList = subjectLabelService.batchQueryById(labelIdList);
         List<String> labelNameList = labelList.stream().map(SubjectLabel::getLabelName).collect(Collectors.toList());
         bo.setLabelNames(labelNameList);
+        bo.setLiked(subjectLikedDomainService.isLiked(subjectInfoBo.getId().toString(), LoginUtil.getLoginId()));
+        bo.setLikedCount(subjectLikedDomainService.getLikedCount(subjectInfoBo.getId().toString()));
+        assembleSubjectCursor(subjectInfoBo, bo);
         return bo;
+    }
 
+    private void assembleSubjectCursor(SubjectInfoBo subjectInfoBo, SubjectInfoBo bo){
+        Long categoryId = subjectInfoBo.getCategoryId();
+        Long labelId = subjectInfoBo.getLabelId();
+        Long subjectId = subjectInfoBo.getId();
+        if(Objects.isNull(categoryId) || Objects.isNull(labelId)){
+            return;
+        }
+        Long nextSubjectId = subjectInfoService.querySubjectIdCursor(subjectId, categoryId, labelId, 1);
+        bo.setNextSubjectId(nextSubjectId);
+        Long lastSubjectId = subjectInfoService.querySubjectIdCursor(subjectId, categoryId, labelId, 0);
+        bo.setLastSubjectId(lastSubjectId);
     }
 
     /**

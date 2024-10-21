@@ -1,5 +1,6 @@
 package com.jingdianyy.subject.domain.entity;
 
+import com.jingdianyy.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @since 2024-10-14 19:56:47
  */
 @Data
-public class SubjectLikedBO implements Serializable {
+public class SubjectLikedBO extends PageInfo implements Serializable {
 
     /**
      * 主键
@@ -23,6 +24,10 @@ public class SubjectLikedBO implements Serializable {
      * 题目id
      */
     private Long subjectId;
+    /**
+     * 题目名称
+     */
+    private String subjectName;
 
     /**
      * 点赞人id

@@ -4,11 +4,12 @@ com\jingdianyy\subject\application\dto\SubjectInfoDTO.class
 com\jingdianyy\subject\application\convert\SubjectAnswerDTOConverter.class
 com\jingdianyy\subject\application\controller\SubjectCategoryController.class
 com\jingdianyy\subject\application\convert\SubjectLabelDTOConverterImpl.class
+com\jingdianyy\subject\application\dto\SubjectLikedDTO.class
 com\jingdianyy\subject\application\convert\SubjectLabelDTOConverter.class
+com\jingdianyy\subject\application\controller\SubjectLikedController.class
 com\jingdianyy\subject\application\dto\SubjectAnswerDTO.class
-com\jingdianyy\subject\application\util\LoginUtil.class
 com\jingdianyy\subject\application\Interceptor\FeignRequestInterceptor.class
-com\jingdianyy\subject\application\context\LoginContextHolder.class
+com\jingdianyy\subject\application\convert\SubjectLikedDTOConverter.class
 com\jingdianyy\subject\application\Interceptor\LoginInterceptor.class
 com\jingdianyy\subject\application\controller\SubjectController.class
 com\jingdianyy\subject\application\convert\SubjectAnswerDTOConverterImpl.class
@@ -19,4 +20,5 @@ com\jingdianyy\subject\application\dto\SubjectCategoryDTO.class
 com\jingdianyy\subject\application\convert\SubjectInfoDTOConverterImpl.class
 com\jingdianyy\subject\application\controller\SubjectLabelController.class
 com\jingdianyy\subject\application\convert\SubjectCategoryDTOConverter.class
+com\jingdianyy\subject\application\convert\SubjectLikedDTOConverterImpl.class
 com\jingdianyy\subject\application\controller\TestFeginController.class

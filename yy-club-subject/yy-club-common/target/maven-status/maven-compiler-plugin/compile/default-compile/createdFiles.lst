@@ -1,3 +1,6 @@
+com\jingdianyy\subject\common\util\LoginUtil.class
+com\jingdianyy\subject\common\context\LoginContextHolder.class
+com\jingdianyy\subject\common\enums\SubjectLikedStatusEnum.class
 com\jingdianyy\subject\common\enums\CategoryTypeEnum.class
 com\jingdianyy\subject\common\entity\PageResult.class
 com\jingdianyy\subject\common\enums\ResultCodeEnum.class
