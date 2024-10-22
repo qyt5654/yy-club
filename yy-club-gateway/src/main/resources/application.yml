@@ -62,6 +62,13 @@ spring:
             - Path=/circle/**
           filters:
             - StripPrefix=1
+
+        - id: interview
+          uri: lb://yy-club-interview
+          predicates:
+            - Path=/interview/**
+          filters:
+            - StripPrefix=1
 sa-token:
   token-name: satoken
   timeout: 2592000
